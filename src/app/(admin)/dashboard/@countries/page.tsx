@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { getSummaryCountries } from '../../../../lib/api';
-import DashboardCard from '@/app/components/dashboard-card';
+import DashboardCard from '../../../components/dashboard-card';
 
 export interface PageProps {}
 

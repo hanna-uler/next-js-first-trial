@@ -1,6 +1,6 @@
 import React from 'react';
 import { getSummaryStats } from '../../../../lib/api';
-import StatCard, { StatCardType } from '../../../components/stat-card';
+import StatCard, { StatCardType } from '../../../components/stat-card/stat-card';
 import Link from 'next/link';
 
 export interface PageProps {}
@@ -18,13 +18,14 @@ export default async function Page({}: PageProps) {
   return (
     <div className="grid grid-cols-12 gap-5">
       {(Object.keys(labelByStat) as (keyof typeof data)[]).map((key) => (
-        <Link href={`/dashboard/${key}`} key={key} className="col-span-3">
+        // <Link href={`/dashboard/${key}`} key={key} className="col-span-3"></Link>
+        <div key={key} className="col-span-3">
           <StatCard
             type={StatCardType.Gradient}
             label={labelByStat[key]}
             counter={data[key]}
           />
-        </Link>
+        </div>
       ))}
     </div>
   );
