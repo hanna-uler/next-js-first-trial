@@ -86,7 +86,8 @@ export const getCountries = (init?: RequestInit) => {
 export const getCategories = (init?: RequestInit) => {
   return sendRequest<Category[]>(buildUrl('categories'), init);
 };
-  export const getCompanies = (init?: RequestInit) => {
+
+export const getCompanies = (init?: RequestInit) => {
   return sendRequest<Company[]>(buildUrl('companies'), init);
 };
 
