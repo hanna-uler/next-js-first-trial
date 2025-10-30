@@ -106,14 +106,14 @@ export const getPromotions = async (
 };
 export const createCompany = async (
   data: Omit<Company, 'id' | 'hasPromotions'>,
-  init?: RequestInit,
+  // init?: RequestInit,
 ) => {
   return sendRequest<Company>(buildUrl('companies'), {
-    ...init,
+    // ...init,
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
-      ...(init && init.headers),
+      // ...(init && init.headers),
       'content-type': 'application/json',
     },
   });
@@ -121,13 +121,13 @@ export const createCompany = async (
 
 export const createPromotion = async (
   data: Omit<Promotion, 'id'>,
-  init?: RequestInit,
+  // init?: RequestInit,
 ) => {
   return sendRequest<Promotion>(buildUrl('promotions'), {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
-      ...(init && init.headers),
+      // ...(init && init.headers),
       'content-type': 'application/json',
     },
   });

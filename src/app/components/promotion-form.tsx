@@ -41,6 +41,7 @@ export default function PromotionForm({
   const { mutateAsync, isPending } = useMutation({
     mutationFn: createPromotion,
     onSuccess: () => {
+
       queryClient.invalidateQueries({
         queryKey: ['promotions', companyId],
       });
@@ -52,7 +53,12 @@ export default function PromotionForm({
     },
   });
 
-  const handleSubmit = async (values: PromotionFieldValues) => {
+  const handleSubmit = async (
+    values: PromotionFieldValues,
+    { resetForm }: { resetForm: () => void }
+  ) => {
+    if (!company) return; // safely skip if company is undefined yet
+
     await mutateAsync({
       ...values,
       discount: Number(values.discount) || 0,
@@ -63,6 +69,7 @@ export default function PromotionForm({
     if (onSubmit) {
       onSubmit(values);
     }
+    resetForm();
   };
 
   return (
@@ -84,7 +91,7 @@ export default function PromotionForm({
             placeholder="Discount"
             name="discount"
           />
-          <LogoUploader square label="Image" placeholder="Upload photo" />
+          <LogoUploader label="Image" placeholder="Upload photo" />
         </div>
         <Button type="submit" disabled={isPending}>
           Add promotion
